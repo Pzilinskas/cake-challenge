@@ -20,6 +20,10 @@ class Cake extends Component {
             ? 'Loading your yummy cake!'
             : null
             }
+            {this.props.getCakeInvalid
+                ? 'Failed to load your yummy cake'
+                : null
+            }
             <div className="row">
                 <div className="col-sm-5">
                     <img src={this.props.currentCake.imageUrl}
