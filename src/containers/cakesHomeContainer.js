@@ -12,7 +12,8 @@ function mapStateToProps(state) {
         currentCake: state.cake.currentCake,
         isCreatingCake: state.cake.isCreatingCake,
         createCakeInvalid: state.cake.createCakeInvalid,
-        createCakeSuccessful: state.cake.createCakeSuccessful
+        createCakeSuccessful: state.cake.createCakeSuccessful,
+        serverError: state.cake.serverError
     }
 }
 function mapDispatchToProps(dispatch) {

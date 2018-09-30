@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import{ BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import{ BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 
 import Header from './Header';
 import Cakes from './Cakes';
 import Cake from './Cake';
 import AddCake from './AddCake';
+import ServerError from './ServerError';
 
 class CakesHomePage extends Component {
+
+
+
     render() {
+        if(this.props.serverError){
+            return <Redirect to="/server-error/"/>
+        }
         return (
             <div className="container-fluid">
                 <Header/>
@@ -29,6 +36,7 @@ class CakesHomePage extends Component {
                             />
                         }
                         />
+                        <Route path="/server-error/" component={ServerError}/>
                         <Route path="/" render={() =>
                             <Cakes userLoadsCakes={this.props.userLoadsCakes}
                                    isGettingCakes={this.props.isGettingCakes}

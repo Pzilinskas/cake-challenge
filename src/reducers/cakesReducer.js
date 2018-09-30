@@ -24,7 +24,10 @@ const initialCreateCakeState = {
     createCakeInvalid: false,
     createCakeSuccessful: false,
 }
-const initialServerErrorState = false;
+const initialServerErrorState = {
+    serverError: false
+};
+
 
 const initialState = {
     ...initialGetCakesState,
@@ -84,7 +87,8 @@ export function cake(state = initialState, action){
             }
         case SERVER_ERROR:
             return{
-                initialServerErrorState: true
+                ...state,
+                serverError: true
             }
         default:
             return state
