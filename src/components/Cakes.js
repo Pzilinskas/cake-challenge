@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Link} from 'react-router-dom';
 import CakeListItem from './CakeListItem';
 
 class Cakes extends Component {
@@ -22,6 +22,9 @@ class Cakes extends Component {
 
     return (
       <div className="row">
+              <div className="col-sm-12 text-right mb-2 mt-2">
+                  <Link to="/add/" className="btn btn-outline-secondary">Add Cake</Link>
+              </div>
           {cakes}
       </div>
     )

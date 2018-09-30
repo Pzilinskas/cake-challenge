@@ -4,6 +4,9 @@ import {
     SERVER_GET_CAKE_REQUEST,
     SERVER_GET_CAKE_SUCCESS,
     SERVER_GET_CAKE_INVALID,
+    SERVER_CREATE_CAKE_REQUEST,
+    SERVER_CREATE_CAKE_SUCCESS,
+    SERVER_CREATE_CAKE_INVALID,
     SERVER_ERROR
 }from '../actionTypes/cakeActionTypes';
 
@@ -16,11 +19,17 @@ const initialGetCakeState = {
     getCakeInvalid: false,
     currentCake: {}
 }
+const initialCreateCakeState = {
+    isCreatingCake: false,
+    createCakeInvalid: false,
+    createCakeSuccessful: false,
+}
 const initialServerErrorState = false;
 
 const initialState = {
     ...initialGetCakesState,
     ...initialGetCakeState,
+    ...initialCreateCakeState,
     ...initialServerErrorState
 }
 
@@ -54,6 +63,24 @@ export function cake(state = initialState, action){
                 ...state,
                 ...initialGetCakeState,
                 getCakeInvalid: true,
+            }
+        case SERVER_CREATE_CAKE_REQUEST:
+            return{
+                ...state,
+                ...initialCreateCakeState,
+                isCreatingCake: true
+            }
+        case SERVER_CREATE_CAKE_SUCCESS:
+            return{
+                ...state,
+                ...initialCreateCakeState,
+                createCakeSuccessful: true
+            }
+        case SERVER_CREATE_CAKE_INVALID:
+            return{
+                ...state,
+                ...initialCreateCakeState,
+                createCakeInvalid: true
             }
         case SERVER_ERROR:
             return{

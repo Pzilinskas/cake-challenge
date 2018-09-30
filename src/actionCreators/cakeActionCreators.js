@@ -5,6 +5,9 @@ import {
     SERVER_GET_CAKE_REQUEST,
     SERVER_GET_CAKE_SUCCESS,
     SERVER_GET_CAKE_INVALID,
+    SERVER_CREATE_CAKE_REQUEST,
+    SERVER_CREATE_CAKE_SUCCESS,
+    SERVER_CREATE_CAKE_INVALID,
     SERVER_ERROR
 }from '../actionTypes/cakeActionTypes';
 
@@ -41,6 +44,31 @@ export function serverGetCakeSuccess(cake) {
 export function serverGetCakeInvalid() {
     return{
         type: SERVER_GET_CAKE_INVALID
+    }
+
+}
+
+export function serverCreateCakeRequest() {
+    return{
+        type: SERVER_CREATE_CAKE_REQUEST
+    }
+
+}
+
+export function serverCreateCakeSuccess(name, comment, imageUrl, yumFactor) {
+    return{
+        type: SERVER_CREATE_CAKE_SUCCESS,
+        name,
+        comment,
+        imageUrl,
+        yumFactor
+    }
+
+}
+
+export function serverCreateCakeInvalid() {
+    return{
+        type: SERVER_CREATE_CAKE_INVALID
     }
 
 }
@@ -96,6 +124,43 @@ export function userLoadsCake(cakeId) {
                         )
                     }else{
                         dispatch(serverGetCakeInvalid());
+                    }
+                },
+                error => {
+                    dispatch(serverError());
+                }
+            )
+    }
+}
+export function userCreatesCake(name, comment, imageUrl, yumFactor) {
+    return function(dispatch){
+        dispatch(serverCreateCakeRequest());
+        return fetch(
+            apiBaseUrl + '/cakes/', {
+                method: "POST",
+                body: JSON.stringify(
+                    {
+                        name,
+                        comment,
+                        imageUrl,
+                        yumFactor
+                    }
+                ),
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
+            .then(
+                response => {
+                    if (response.ok) {
+                        response.json().then(
+                            json => {
+                                dispatch(serverCreateCakeSuccess(json));
+                            }
+                        )
+                    }else{
+                        dispatch(serverCreateCakeInvalid());
                     }
                 },
                 error => {

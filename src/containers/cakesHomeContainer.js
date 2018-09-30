@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import CakesHomePage from '../components/CakesHomePage';
 
-import {userLoadsCakes, userLoadsCake} from '../actionCreators/cakeActionCreators';
+import {userLoadsCakes, userLoadsCake, userCreatesCake} from '../actionCreators/cakeActionCreators';
 
 function mapStateToProps(state) {
     return{
@@ -9,7 +9,10 @@ function mapStateToProps(state) {
         cakes: state.cake.cakes,
         isGettingCake: state.cake.isGettingCake,
         getCakeInvalid: state.cake.getCakeInvalid,
-        currentCake: state.cake.currentCake
+        currentCake: state.cake.currentCake,
+        isCreatingCake: state.cake.isCreatingCake,
+        createCakeInvalid: state.cake.createCakeInvalid,
+        createCakeSuccessful: state.cake.createCakeSuccessful
     }
 }
 function mapDispatchToProps(dispatch) {
@@ -19,6 +22,9 @@ function mapDispatchToProps(dispatch) {
         },
         userLoadsCake(cakeId){
             dispatch(userLoadsCake(cakeId));
+        },
+        userCreatesCake(name, comment, imageUrl, yumFactor) {
+            return dispatch(userCreatesCake(name, comment, imageUrl, yumFactor));
         }
     }
 }
