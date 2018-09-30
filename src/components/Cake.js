@@ -16,6 +16,10 @@ class Cake extends Component {
                     <Link to="/" className="btn btn-outline-secondary">Go Back</Link>
                 </div>
             </div>
+            {this.props.isGettingCake
+            ? 'Loading your yummy cake!'
+            : null
+            }
             <div className="row">
                 <div className="col-sm-5">
                     <img src={this.props.currentCake.imageUrl}
