@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import Header from './Header';
 import CakeListItem from './CakeListItem';
 
 class Cakes extends Component {
@@ -23,12 +22,7 @@ class Cakes extends Component {
 
     return (
       <div className="row">
-          <div className="col-sm-12">
-              <Header/>
-              <div className="row">
-                  {cakes}
-              </div>
-          </div>
+          {cakes}
       </div>
     )
   }
